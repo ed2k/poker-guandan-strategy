@@ -1,11 +1,10 @@
-import React, { Fragment, useCallback, useState } from 'react'
+import React, { Fragment, useCallback } from 'react'
 import { View } from 'react-native'
 import { CardsChooser } from './CardsChooser'
 import { AppState, NavigationProps } from './common/types'
 import { Divider } from './Divider'
 import { MyButton } from './MyButton'
 import { RankChooser } from './RankChooser'
-import { calc } from './strategy/strategy'
 import { commonStyles } from './styles'
 
 interface StatelessHomePageProps

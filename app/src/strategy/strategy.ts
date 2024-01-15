@@ -26,7 +26,7 @@ export function calc({
     const planCollector = makeAllBestPlansCollector({ scorer: scorerFunc })
     iteratePlans({ cards, collectPlan: planCollector.collectPlan, context })
     const bestPlans = planCollector.getBestPlans()
-    if (bestPlans.length == 0) {
+    if (bestPlans.length === 0) {
       throw new Error('No plan found')
     }
     return bestPlans

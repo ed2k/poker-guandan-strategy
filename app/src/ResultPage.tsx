@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { NavigationProps } from './common/types'
 import SolutionVisualization from './SolutionVisualization'
@@ -32,15 +31,15 @@ function ResultPage({ screenProps, navigation }: NavigationProps) {
       await delay(0)
       return calc(args2)
     },
-    { enabled: status1 == 'success' },
+    { enabled: status1 === 'success' },
   )
   let strategyResult: StrategyResult[] = ['loading']
   // TODO: handle error?
-  if (status1 == 'success') {
+  if (status1 === 'success') {
     strategyResult = [{ title: '价值策略', plans: plans1! }]
-    if (status2 == 'loading') {
+    if (status2 === 'loading') {
       strategyResult.push('loading' as const)
-    } else if (status2 == 'success') {
+    } else if (status2 === 'success') {
       strategyResult.push({ title: '手数策略', plans: plans2! })
     }
   }

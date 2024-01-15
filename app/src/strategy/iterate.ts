@@ -215,12 +215,14 @@ const playCardSequence = ({
     playRank: { type: playType, rank: nowRank },
   }
   for (let i = nowRank; i <= end; ++i) {
-    const ii = i == K + 1 ? A : i
+    const ii = i === K + 1 ? A : i
     const taken = takeCard(newCardsByRank, ii, cardCount)
-    if (taken == null) {
+    if (taken === null) {
       return undefined
     }
-    play.cards.push(...taken)
+    if (taken) {
+      play.cards.push(...taken)
+    }
   }
   return {
     cardsByRank: newCardsByRank,
@@ -260,7 +262,7 @@ const playStraightFlush: PlayTypeFunc = ({
     playRank: { type: PlayType.STRAIGHT_FLUSH, rank: nowRank },
   }
   for (let i = nowRank; i <= end; ++i) {
-    const ii = i == K + 1 ? A : i
+    const ii = i === K + 1 ? A : i
     const taken = takeCardBySuit(newCardsByRank, ii, nowSuit)
     if (taken == null) {
       // not found

@@ -19,11 +19,11 @@ export class GameContext {
    * The weakest is 0. The strongest (red joker) is 14.
    */
   getOrder(rank: NaturalRank): PowerRank {
-    if (rank == RED_JOKER) {
+    if (rank === RED_JOKER) {
       return 14
-    } else if (rank == BLACK_JOKER) {
+    } else if (rank === BLACK_JOKER) {
       return 13
-    } else if (rank == this.mainRank) {
+    } else if (rank === this.mainRank) {
       return 12
     } else {
       const usualRank = getUsualPowerRank(rank)

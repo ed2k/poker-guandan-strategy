@@ -13,7 +13,6 @@ import {
   CardRaw,
   CardRawLoose,
   NATURAL_RANK,
-  NATURAL_RANKS,
 } from './strategy/models/const'
 import { Suit, SUIT } from './strategy/models/Suite'
 

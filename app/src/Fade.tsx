@@ -31,7 +31,7 @@ export const Fade: FunctionComponent<FadeProps> = ({
   timeout,
   ...restProps
 }) => {
-  const [fadeAnim, _] = useState(new Animated.Value(0))
+  const [fadeAnim, ] = useState(new Animated.Value(0))
 
   return (
     <Transition

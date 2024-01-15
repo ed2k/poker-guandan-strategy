@@ -1,19 +1,19 @@
 import { AllSuit, parseSuit, Suit, SuitBlackJoker, SuitRedJoker } from './Suite'
 
-export type J = 11
+export type tJ = 11
 export const J = 11
-export type Q = 12
+export type tQ = 12
 export const Q = 12
-export type K = 13
+export type tK = 13
 export const K = 13
-export type A = 1
+export type tA = 1
 export const A = 1
 export type BlackJoker = 14
 export const BLACK_JOKER = 14
 export type RedJoker = 15
 export const RED_JOKER = 15
 export type NaturalRank =
-  | A
+  | tA
   | 2
   | 3
   | 4
@@ -23,9 +23,9 @@ export type NaturalRank =
   | 8
   | 9
   | 10
-  | J
-  | Q
-  | K
+  | tJ
+  | tQ
+  | tK
   | BlackJoker
   | RedJoker
 export const NATURAL_RANK_MIN = A
@@ -144,7 +144,7 @@ export function parseRawCards(text: string): CardRaw[] {
       i += 2
     } else {
       const parsedSuit = parseSuit(text[i])
-      const [_, error] = parsedSuit
+      const [ , error] = parsedSuit
       if (parsedSuit[1] != null) {
         throw new Error(`${error}, in ${text}, position ${i}`)
       }

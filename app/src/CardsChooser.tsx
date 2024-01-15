@@ -211,6 +211,60 @@ export function CardsChooser({
 
   return (
     <View style={{ flex: 1 }}>
+      <ScrollView
+        style={{
+          height: windowSize === 'SMALL' ? 110 : 150,
+          flexGrow: 0,
+        }}
+        contentContainerStyle={{
+          flex: 1,
+          justifyContent: 'center',
+        }}
+        horizontal
+      >
+        <AddCardPanel
+          cards={cards}
+          addCard={addCard}
+          rank={rank}
+          large={windowSize === 'BIG'}
+        />
+      </ScrollView>
+      <ScrollView
+        style={{
+          height: windowSize === 'SMALL' ? 110 : 150,
+          flexGrow: 0,
+        }}
+        contentContainerStyle={{
+          flex: 1,
+          justifyContent: 'flex-start',
+        }}
+        horizontal
+      >
+        <AddCardPanel
+          cards={cards}
+          addCard={addCard}
+          rank={rank}
+          large={windowSize === 'BIG'}
+        />
+      </ScrollView>
+      <ScrollView
+        style={{
+          height: windowSize === 'SMALL' ? 110 : 150,
+          flexGrow: 0,
+        }}
+        contentContainerStyle={{
+          flex: 1,
+          justifyContent: 'flex-end',
+        }}
+        horizontal
+      >
+        <AddCardPanel
+          cards={cards}
+          addCard={addCard}
+          rank={rank}
+          large={windowSize === 'BIG'}
+        />
+      </ScrollView>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <CardDeck
           cards={cards}

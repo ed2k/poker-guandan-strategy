@@ -1,7 +1,7 @@
 {
   "name": "guandan-app",
   "version": "0.1.0",
-  "homepage": "https://bobgy.github.io/poker-guandan-strategy",
+  "homepage": "https://ed2k.github.io/poker-guandan-strategy/docs",
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.3.1",

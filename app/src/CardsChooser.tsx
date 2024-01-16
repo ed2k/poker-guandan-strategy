@@ -167,10 +167,11 @@ interface AddCardPanelProps {
 const AddCardPanel: React.FunctionComponent<AddCardPanelProps> = (props) => {
   const suits: SuiteMetadata<AllSuit>[] =
     props.rank === BLACK_JOKER || props.rank === RED_JOKER ? SUITS_JOKER : SUITS
+  const cardsToDisplay = suits.concat(suits, suits)
 
   return (
     <>
-      {suits.map((suit: SuiteMetadata<AllSuit>) => {
+      {cardsToDisplay.map((suit: SuiteMetadata<AllSuit>) => {
         const card = {
           suit: suit.value,
           rank: props.rank,
@@ -187,7 +188,7 @@ const AddCardPanel: React.FunctionComponent<AddCardPanelProps> = (props) => {
               suit={suit.value}
               rank={props.rank}
               disabled={!canIAddThisCard}
-              style={{ margin: 3 }}
+              style={{ marginRight: -36, marginBottom: 5 /* give room to show horizontal scroll bar */}} 
               large={props.large}
             />
           </TouchableOpacity>
@@ -211,60 +212,36 @@ export function CardsChooser({
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView
-        style={{
-          height: windowSize === 'SMALL' ? 110 : 150,
-          flexGrow: 0,
-        }}
-        contentContainerStyle={{
-          flex: 1,
-          justifyContent: 'center',
-        }}
-        horizontal
-      >
-        <AddCardPanel
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <CardDeck
           cards={cards}
-          addCard={addCard}
-          rank={rank}
+          style={{
+            height: 60,
+            padding: 6,
+          }}
           large={windowSize === 'BIG'}
         />
-      </ScrollView>
-      <ScrollView
-        style={{
-          height: windowSize === 'SMALL' ? 110 : 150,
-          flexGrow: 0,
-        }}
-        contentContainerStyle={{
-          flex: 1,
-          justifyContent: 'flex-start',
-        }}
-        horizontal
-      >
-        <AddCardPanel
+      </View>
+      <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+        <CardDeck
           cards={cards}
-          addCard={addCard}
-          rank={rank}
+          style={{
+            height: 60,
+            padding: 6,
+          }}
           large={windowSize === 'BIG'}
         />
-      </ScrollView>
-      <ScrollView
-        style={{
-          height: windowSize === 'SMALL' ? 110 : 150,
-          flexGrow: 0,
-        }}
-        contentContainerStyle={{
-          flex: 1,
-          justifyContent: 'flex-end',
-        }}
-        horizontal
-      >
-        <AddCardPanel
+      </View>
+      <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+        <CardDeck
           cards={cards}
-          addCard={addCard}
-          rank={rank}
+          style={{
+            height: 60,
+            padding: 6,
+          }}
           large={windowSize === 'BIG'}
         />
-      </ScrollView>
+      </View>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <CardDeck
           cards={cards}
@@ -287,6 +264,11 @@ export function CardsChooser({
         contentContainerStyle={{
           flex: 1,
           justifyContent: 'center',
+          // flexWrap: 'wrap',
+          // flexDirection: 'row',
+          // padding: 0,
+          // paddingRight: 52, // cancel margin of hands
+          // paddingBottom: 52,
         }}
         horizontal
       >

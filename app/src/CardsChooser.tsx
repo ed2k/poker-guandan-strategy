@@ -167,7 +167,7 @@ interface AddCardPanelProps {
 const AddCardPanel: React.FunctionComponent<AddCardPanelProps> = (props) => {
   const suits: SuiteMetadata<AllSuit>[] =
     props.rank === BLACK_JOKER || props.rank === RED_JOKER ? SUITS_JOKER : SUITS
-  const cardsToDisplay = suits.concat(suits, suits)
+  const cardsToDisplay = suits.concat(suits, suits, suits, suits, suits, suits)
 
   return (
     <>
@@ -264,11 +264,6 @@ export function CardsChooser({
         contentContainerStyle={{
           flex: 1,
           justifyContent: 'center',
-          // flexWrap: 'wrap',
-          // flexDirection: 'row',
-          // padding: 0,
-          // paddingRight: 52, // cancel margin of hands
-          // paddingBottom: 52,
         }}
         horizontal
       >

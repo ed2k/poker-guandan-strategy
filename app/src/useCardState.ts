@@ -5,12 +5,13 @@ import { CardRaw } from './strategy/models/const'
 
 export function useCardState(): CardState {
   const [cards, setCards] = useState<CardRaw[]>([])
+  const [allCards, setAllCards] = useState<CardRaw[][]>([[], [], [], []])
   const clearCards = useCallback(() => setCards([]), [setCards])
   const addCard = useCallback(
     (card) => setCards((cardsNow) => cardsNow.concat(card)),
     [setCards],
   )
-  const randomCards = useCallback(() => setCards(generateRandomHands()), [
+  const randomCards = useCallback(() => setAllCards(generateRandomHands()), [
     setCards,
   ])
   const deleteLastCard = useCallback(
@@ -19,6 +20,7 @@ export function useCardState(): CardState {
   )
   return {
     cards,
+    allCards,
     clearCards,
     addCard,
     randomCards,

@@ -13,19 +13,11 @@ import { Divider } from './Divider'
 import { MyButton } from './MyButton'
 import {
   A,
-  BLACK_JOKER,
   CardRaw,
   NaturalRank,
   NATURAL_RANK_MAX,
   NATURAL_RANK_MIN,
-  RED_JOKER,
 } from './strategy/models/const'
-import {
-  AllSuit,
-  SuiteMetadata,
-  SUITS,
-  SUITS_JOKER,
-} from './strategy/models/Suite'
 import { WindowSize } from './useWindowSize'
 
 const palette = {
@@ -160,33 +152,26 @@ const ControlPanel: React.FunctionComponent<ControlPanelProps> = (props) => (
 
 interface AddCardPanelProps {
   cards: CardRaw[]
+  cardsLeft: CardRaw[]
   addCard: (card: CardRaw) => void
   rank: NaturalRank
   large?: boolean
 }
 const AddCardPanel: React.FunctionComponent<AddCardPanelProps> = (props) => {
-  const suits: SuiteMetadata<AllSuit>[] =
-    props.rank === BLACK_JOKER || props.rank === RED_JOKER ? SUITS_JOKER : SUITS
-  const cardsToDisplay = suits.concat(suits, suits, suits, suits, suits, suits)
-
   return (
     <>
-      {cardsToDisplay.map((suit: SuiteMetadata<AllSuit>) => {
-        const card = {
-          suit: suit.value,
-          rank: props.rank,
-        } as CardRaw
+      {props.cardsLeft.map((card: CardRaw) => {
         const canIAddThisCard = canIAddCard(props.cards, card)
 
         return (
           <TouchableOpacity
-            key={suit.value}
+            key={JSON.stringify(card)}
             onPress={() => props.addCard(card)}
             disabled={!canIAddThisCard}
           >
             <Card
-              suit={suit.value}
-              rank={props.rank}
+              suit={card.suit}
+              rank={card.rank}
               disabled={!canIAddThisCard}
               style={{ marginRight: -36, marginBottom: 5 /* give room to show horizontal scroll bar */}} 
               large={props.large}
@@ -200,6 +185,7 @@ const AddCardPanel: React.FunctionComponent<AddCardPanelProps> = (props) => {
 
 export function CardsChooser({
   cards,
+  allCards,
   addCard,
   clearCards,
   randomCards,
@@ -269,6 +255,7 @@ export function CardsChooser({
       >
         <AddCardPanel
           cards={cards}
+          cardsLeft={allCards[0]}
           addCard={addCard}
           rank={rank}
           large={windowSize === 'BIG'}

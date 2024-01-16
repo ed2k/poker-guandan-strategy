@@ -9,6 +9,7 @@ export interface RankState {
 
 export interface CardState {
   cards: CardRaw[]
+  allCards: CardRaw[][]
   addCard(card: CardRaw): void
   clearCards(): void
   randomCards(): void

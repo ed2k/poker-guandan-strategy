@@ -20,6 +20,21 @@ const ALL_CARDS_ONE_DECK: CardRaw[] = NATURAL_RANKS.map((rank): CardRaw[] =>
   return res
 }, [])
 
+const ALL_CARDS_2ND_DECK: CardRaw[] = NATURAL_RANKS.map((rank): CardRaw[] =>
+  rank === BLACK_JOKER
+    ? [{ rank, suit: 'B' }]
+    : rank === RED_JOKER
+    ? [{ rank, suit: 'R' }]
+    : SUITS.map((suit) => ({
+        rank,
+        suit: suit.value,
+        dedup: 1
+      })),
+).reduce((res, cards) => {
+  res.push(...cards)
+  return res
+}, [])
+
 /**
  * reference: https://stackoverflow.com/a/6274381
  * Shuffles array in place.
@@ -51,10 +66,13 @@ function sortCards(a: CardRaw[]): CardRaw[] {
   return a.sort(cardCompare)
 }
 
-export function generateRandomHands(): CardRaw[] {
-  return sortCards(
-    shuffle([...ALL_CARDS_ONE_DECK, ...ALL_CARDS_ONE_DECK]).slice(0, 27),
-  )
+export function generateRandomHands(): CardRaw[][] {
+  const allCards = shuffle([...ALL_CARDS_ONE_DECK, ...ALL_CARDS_2ND_DECK])
+  return [sortCards(allCards.slice(0, 27)),
+    sortCards(allCards.slice(27, 27*2)),
+    sortCards(allCards.slice(27*2, 27*3)),
+    sortCards(allCards.slice(27*3, 108))
+  ]
 }
 
 export function canIAddCard(cards: CardRaw[], cardToAdd: CardRaw): boolean {

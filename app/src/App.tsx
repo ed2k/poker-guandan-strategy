@@ -87,7 +87,7 @@ function App() {
   const resultProps = useResultState()
   const { route, navigation } = useRouterState()
   const windowSize = useWindowSize()
-
+  console.log(cardStateProps)
   return (
     <View
       style={{

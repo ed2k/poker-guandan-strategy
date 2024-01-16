@@ -112,14 +112,17 @@ export type CardRaw =
       // Black Joker is 15, Red Joker is 16
       rank: NaturalRankWithoutJokers
       suit: Suit
+      dedup?: number
     }
   | {
       rank: BlackJoker
       suit: SuitBlackJoker
+      dedup?: number
     }
   | {
       rank: RedJoker
       suit: SuitRedJoker
+      dedup?: number
     }
 export type CardRawLoose = { rank: NaturalRank; suit: AllSuit }
 

@@ -13,6 +13,7 @@ interface StatelessHomePageProps
       | 'rank'
       | 'setRank'
       | 'cards'
+      | 'allCards'
       | 'clearCards'
       | 'addCard'
       | 'randomCards'
@@ -24,6 +25,7 @@ const HomePage: React.FunctionComponent<StatelessHomePageProps> = ({
   rank,
   setRank,
   cards,
+  allCards,
   clearCards,
   addCard,
   randomCards,
@@ -58,6 +60,7 @@ const HomePage: React.FunctionComponent<StatelessHomePageProps> = ({
       >
         <CardsChooser
           cards={cards}
+          allCards={allCards}
           addCard={addCard}
           clearCards={clearCards}
           randomCards={randomCards}
